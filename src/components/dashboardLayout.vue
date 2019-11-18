@@ -63,7 +63,7 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$router.push({ name: "loginLayout" });
-       alert("Success Logout!");
+      alert("Success Logout!");
     }
   }
 };

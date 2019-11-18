@@ -39,8 +39,8 @@ const routes = [
           if (!isAuthenticated()) {
             next();
           } else {
-            alert('Please Login to Continue!');
             next('/');
+            alert('Please Login to Continue!');
           }
         }
       },
@@ -52,8 +52,8 @@ const routes = [
           if (!isAuthenticated()) {
             next();
           } else {
-            alert('Please Login to Continue!');
             next('/');
+            alert('Please Login to Continue!');
           }
         }
       }

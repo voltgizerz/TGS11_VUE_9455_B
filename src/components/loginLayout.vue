@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <v-card>
-      <v-container grid-list-md mb-8 mt-5>
+      <v-container grid-list-md mb-8 mt-10>
+        <v-card-actions class="justify-center">
+          <img src="../assets/lawak.png" style="height:120px;width:200px" />
+        </v-card-actions>
         <h1 class="text-md-center">Login Page - JWT</h1>
         <h5 class="text-md-center">(JSON WEB TOKEN)</h5>
         <v-layout row wrap style="margin:10px" justify="center">
@@ -17,6 +20,10 @@
         </v-layout>
       </v-container>
     </v-card>
+    <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="7000">
+      {{ text }}
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -26,6 +33,10 @@
 export default {
   data() {
     return {
+      snackbar: false,
+      color: null,
+      text: "",
+      load: false,
       form: {
         email: "",
         password: ""
@@ -43,11 +54,13 @@ export default {
 
       this.$http.post(url, this.user).then(response => {
         if (response.data.token) {
-          alert("Success Login!");
           localStorage.setItem("token", response.data.token);
           this.$router.push({ name: "UserController" });
         } else {
-          alert("Email or Password Invalid!");
+          this.snackbar = true;
+          this.text = "Login Invalid!";
+          this.color = "red";
+          this.load = false;
         }
       });
     }
