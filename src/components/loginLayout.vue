@@ -58,7 +58,7 @@ export default {
           this.$router.push({ name: "UserController" });
         } else {
           this.snackbar = true;
-          this.text = "Login Invalid!";
+          this.text = "Invalid Username or Password!";
           this.color = "red";
           this.load = false;
         }
