@@ -52,8 +52,7 @@ const routes = [
           if (!isAuthenticated()) {
             next();
           } else {
-            next('/');
-            alert('Please Login to Continue!');
+            next('/user');
           }
         }
       }
@@ -62,7 +61,14 @@ const routes = [
   {
     path: '/',
     component: LoginLayout,
-    name: 'loginLayout'
+    name: 'loginLayout',
+       beforeEnter(to, from, next) {
+          if (isAuthenticated()) {
+            next();
+          } else {
+            next('/user');
+          }
+        }
   }
 ];
 Vue.use(Router);
